@@ -2,16 +2,17 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import loginImg from "../assets/images/city.jpg";
 
-export default function LoginPage() {
+const LoginPage = () => {
   const [number, setNumber] = useState("");
   const [name, setName] = useState("");
-
   const navigateTo = useNavigate();
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
     if (number.length === 4 && name.trim() !== "") {
-      navigateTo("/todo");
-      alert(`Welcome ${name}`)
+      localStorage.setItem("isLoggedIn", "true");
+      alert(`Welcome ${name}`);
+      navigateTo("/todos");
     } else {
       alert("Invalid code and name");
     }
@@ -21,7 +22,11 @@ export default function LoginPage() {
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 h-screen w-full">
         <div className="hidden sm:block">
-          <img className="w-full h-full object-cover" src={loginImg} />
+          <img
+            className="w-full h-full object-cover"
+            src={loginImg}
+            alt="Login"
+          />
         </div>
 
         <div className="bg-gray-800 flex flex-col justify-center">
@@ -34,6 +39,7 @@ export default function LoginPage() {
               <input
                 className="rounded-lg bg-gray-700 mt-2 p-2 focus:border-blue-500 focus:bg-gray-800 focus:outline-none"
                 type="text"
+                value={number}
                 onChange={(e) => setNumber(e.target.value)}
               />
             </div>
@@ -42,6 +48,7 @@ export default function LoginPage() {
               <input
                 className="p-2 rounded-lg bg-gray-700 mt-2 focus:border-blue-500 focus:bg-gray-800 focus:outline-none"
                 type="password"
+                value={name}
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
@@ -57,4 +64,6 @@ export default function LoginPage() {
       </div>
     </>
   );
-}
+};
+
+export default LoginPage;
