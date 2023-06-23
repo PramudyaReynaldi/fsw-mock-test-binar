@@ -63,14 +63,14 @@ REST API dirancang agar stateless, yang berarti server tidak menyimpan informasi
 
 #### Get all items
 
-```http
+```bash
   GET /api/todos
 ```
 
 
 #### Get item
 
-```http
+```bash
   POST /api/todos
 ```
 
@@ -83,7 +83,7 @@ REST API dirancang agar stateless, yang berarti server tidak menyimpan informasi
 
 #### Delete item
 
-```http
+```bash
   DELETE /api/todos/${id}
 ```
 
