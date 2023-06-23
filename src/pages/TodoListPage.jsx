@@ -11,7 +11,7 @@ const TodoListPage = () => {
 
   const fetchTodos = async () => {
     try {
-      const response = await axios.get("https://jsonplaceholder.typicode.com/todos?_limit=5");
+      const response = await axios.get("http://localhost:3000/api/todos");
       setTodos(response.data);
     } catch (error) {
       console.log(error);
