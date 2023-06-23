@@ -59,6 +59,34 @@ REST API dirancang agar stateless, yang berarti server tidak menyimpan informasi
 ![App Screenshot](https://i.ibb.co/0rnL5Bs/Cuplikan-layar-dari-2023-06-22-22-16-16.png)
 
 
+## To do list API
+
+#### Get all items
+
+```http
+  GET /api/todos
+```
+
+
+#### Get item
+
+```http
+  POST /api/todos
+```
+
+#### Add item
+
+```http
+  GET /api/todos/${id}
+```
+
+
+#### Delete item
+
+```http
+  DELETE /api/todos/${id}
+```
+
 
 ## Dependencies
 
