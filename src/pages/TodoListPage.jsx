@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const TodoListPage = () => {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
+
+  const user = localStorage.getItem("name");
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetchTodos();
@@ -34,12 +38,22 @@ const TodoListPage = () => {
     setTodos(updatedTodos);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    alert("Terimakasih sudah berkunjung ke halaman kami!")
+    navigate("/");
+  };
+
   return (
     <section className="pt-10 bg-gray-800 h-screen">
       <div className="flex flex-col justify-center">
         <div className="max-w-[400px] w-full mx-auto rounded-lg bg-gray-900 p-8 px-8">
-          <div className="flex items-center justify-center ">
-            <h1 className="text-3xl font-bold text-white">Todo List</h1>
+          <div className="flex items-center justify-center text-3xl font-bold text-gray-400 text-center">
+            <h1>Welcome {user}!</h1>
+          </div>
+          <div className="text-3xl font-bold text-white text-center pt-10">
+            <h1>Todo List</h1>
           </div>
           <div className="flex items-center justify-center pt-5">
             <input
@@ -47,11 +61,11 @@ const TodoListPage = () => {
               value={newTodo}
               onChange={(e) => setNewTodo(e.target.value)}
               placeholder="Add a new todo..."
-              className="bg-gray-800 mt-2 my-2 p-2 focus:border-blue-500 focus:bg-gray-800 focus:outline-none rounded-lg text-gray-400"
+              className="bg-gray-800 mt-2 my-2 p-2 focus:border-blue-500 focus:bg-gray-800 focus:outline-none text-gray-400"
             />
             <button
               onClick={handleAddTodo}
-              className="w-full my-5 py-2 bg-teal-500 shadow-lg shadow-teal-500/50 hover:shadow-teal-500/40 text-white font-semibold rounded-lg"
+              className="w-full my-5 py-3 bg-teal-500 shadow-lg shadow-teal-500/50 hover:shadow-teal-500/40 text-white font-semibold"
             >
               Add Todo
             </button>
@@ -71,6 +85,13 @@ const TodoListPage = () => {
               ))}
             </ul>
           </div>
+          <button
+            className="w-full my-5 py-2 bg-teal-500 shadow-lg shadow-teal-500/50 hover:shadow-teal-500/40 text-white font-semibold rounded-lg"
+            type="submit"
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
         </div>
       </div>
     </section>
