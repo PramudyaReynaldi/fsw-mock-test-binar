@@ -1,8 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const TodoListPage = () => {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
+
+  useEffect(() => {
+    fetchTodos();
+  }, []);
+
+  const fetchTodos = async () => {
+    try {
+      const response = await axios.get("https://jsonplaceholder.typicode.com/todos?_limit=5");
+      setTodos(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleAddTodo = () => {
     if (newTodo.trim() !== "") {
