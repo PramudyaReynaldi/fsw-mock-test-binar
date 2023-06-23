@@ -3,7 +3,7 @@ import axios from "axios";
 export const fetchTodos = () => {
   return (dispatch) => {
     axios
-      .get("https://jsonplaceholder.typicode.com/todos?_limit=5")
+      .get("http://localhost:3000/api/todos")
       .then((response) => {
         dispatch({ type: "FETCH_TODOS_SUCCESS", payload: response.data });
       })
@@ -15,7 +15,7 @@ export const fetchTodos = () => {
 
 export const addTodo = (todo) => {
   return (dispatch) => {
-    axios.post('https://jsonplaceholder.typicode.com/todos?_limit=5', todo)
+    axios.post('https://localhost:3000/api/todos', todo)
       .then((response) => {
         dispatch({ type: 'ADD_TODO_SUCCESS', payload: response.data, });
       })
@@ -28,7 +28,7 @@ export const addTodo = (todo) => {
 export const deleteTodo = (id) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`);
+      await axios.delete(`https://localhost:3000/api/todos/${id}`);
       dispatch({ type: "DELETE_TODO_SUCCESS", payload: id });
     } catch (error) {
       dispatch({ type: "DELETE_TODO_ERROR", payload: error.message });
