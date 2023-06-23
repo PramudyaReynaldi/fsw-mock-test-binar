@@ -47,7 +47,7 @@ const LoginPage = () => {
               <label>Nama anda</label>
               <input
                 className="p-2 rounded-lg bg-gray-700 mt-2 focus:border-blue-500 focus:bg-gray-800 focus:outline-none"
-                type="password"
+                type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
