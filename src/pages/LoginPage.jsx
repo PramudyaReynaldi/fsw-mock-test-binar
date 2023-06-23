@@ -11,6 +11,7 @@ const LoginPage = () => {
     e.preventDefault();
     if (number.length === 4 && name.trim() !== "") {
       localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem('name', `${name}`)
       alert(`Welcome ${name}`);
       navigateTo("/todos");
     } else {
@@ -57,7 +58,7 @@ const LoginPage = () => {
               type="submit"
               onClick={handleLogin}
             >
-              SIGN IN
+              LOGIN
             </button>
           </div>
         </div>
