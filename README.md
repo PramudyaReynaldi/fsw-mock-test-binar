@@ -76,7 +76,7 @@ REST API dirancang agar stateless, yang berarti server tidak menyimpan informasi
 
 #### Add item
 
-```http
+```bash
   GET /api/todos/${id}
 ```
 
